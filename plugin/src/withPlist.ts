@@ -59,7 +59,7 @@ export const withPlist: ConfigPlugin<{
 
     if (config.ios?.infoPlist) {
       for (const key of Object.keys(config.ios?.infoPlist)) {
-        if (config.ios?.infoPlist) {
+        if (config.ios?.infoPlist && key !== "UIBackgroundModes") {
           infoPlist[key] = config.ios.infoPlist[key];
         }
       }
