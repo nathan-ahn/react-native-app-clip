@@ -17,6 +17,7 @@ const withAppClip: ConfigPlugin<{
   appleSignin?: boolean;
   applePayMerchantIds?: string[];
   excludedPackages?: string[];
+  pushNotifications?: boolean;
 }> = (
   config,
   {
@@ -30,6 +31,7 @@ const withAppClip: ConfigPlugin<{
     appleSignin,
     applePayMerchantIds,
     excludedPackages,
+    pushNotifications,
   } = {},
 ) => {
   name ??= "Clip";
@@ -37,6 +39,7 @@ const withAppClip: ConfigPlugin<{
   targetSuffix ??= "Clip";
   deploymentTarget ??= "14.0";
   appleSignin ??= false;
+  pushNotifications ??= false;
 
   if (!config.ios?.bundleIdentifier) {
     throw new Error("No bundle identifier specified in app config");
@@ -52,7 +55,7 @@ const withAppClip: ConfigPlugin<{
     ],
     [
       withEntitlements,
-      { targetName, groupIdentifier, appleSignin, applePayMerchantIds },
+      { targetName, groupIdentifier, appleSignin, applePayMerchantIds, pushNotifications },
     ],
     [withPodfile, { targetName, excludedPackages }],
     [
