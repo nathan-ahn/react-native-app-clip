@@ -1,33 +1,24 @@
-import ReactNativeAppClipModule from "./ReactNativeAppClipModule";
-
 export function isClip(): boolean {
-  const bundleIdentifier = ReactNativeAppClipModule.getBundleIdentifier() as
-    | string
-    | undefined;
-  const isClip =
-    bundleIdentifier?.slice(bundleIdentifier.lastIndexOf(".") + 1) === "Clip";
-  return isClip;
+    return false
 }
 
 export function getContainerURL(groupIdentifier: string): string {
-  return ReactNativeAppClipModule.getContainerURL(groupIdentifier);
+    throw new Error("Only available on iOS");
 }
 
 export function getBundleIdentifier(): string {
-  return ReactNativeAppClipModule.getBundleIdentifier();
+    throw new Error("Only available on iOS");
 }
 
 export function displayOverlay(): void {
-  ReactNativeAppClipModule.displayOverlay();
 }
 
 export function setSharedCredential(
   groupIdentifier: string,
   credential: string,
 ): void {
-  ReactNativeAppClipModule.setSharedCredential(groupIdentifier, credential);
 }
 
-export function getSharedCredential(groupIdentifier: string): string {
-  return ReactNativeAppClipModule.getSharedCredential(groupIdentifier);
+export function getSharedCredential(groupIdentifier: string): string | null {
+    return null;
 }
