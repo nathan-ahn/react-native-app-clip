@@ -65,8 +65,7 @@ export const withPodfile: ConfigPlugin<{
 
       const useExpoModules =
         excludedPackages && excludedPackages.length > 0
-          ? `exclude = ["${excludedPackages.join(`", "`)}"]
-      use_expo_modules!(exclude: exclude)`
+          ? `exclude = ["${excludedPackages.join(`", "`)}"]\n  use_expo_modules!(exclude: exclude)`
           : "use_expo_modules!";
 
       const appClipTarget = `
@@ -87,15 +86,11 @@ target '${targetName}' do
 end
       `.trim();
 
-
-      podfileContent = mergeContents({
-        tag: "react-native-app-clip:target",
-        src: podfileContent,
-        newSrc: appClipTarget,
-        anchor: "Pod::UI.warn e",
-        offset: 4,
-        comment: "#",
-      }).contents;
+      // It's generally safer to use `mergeContents` to insert new content into the Podfile, but this new target should always be inserted at the end of the file.
+      podfileContent = podfileContent
+        .concat(`\n\n# >>> Inserted by react-native-app-clip\n`)
+        .concat(appClipTarget)
+        .concat(`\n\n# <<< Inserted by react-native-app-clip\n`);
 
       fs.writeFileSync(podFilePath, podfileContent);
 

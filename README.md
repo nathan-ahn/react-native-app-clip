@@ -1,7 +1,7 @@
 # react-native-app-clip
 
 > **Warning**
-> Starting with version 0.3.0, react-native-app-clip requires **Expo SDK 51** and **React Native 0.74**.
+> Starting with version 0.4.0, react-native-app-clip requires **Expo SDK 52** and **React Native 0.76**. Downgrade to 0.3.1 if you wish to use **Expo SDK 51** and **React Native 0.74**.
 
 Expo Config Plugin that generates an App Clip for iOS apps built with Expo.
 
@@ -27,7 +27,7 @@ In your app’s Expo config (app.json, or app.config.js), make sure that react-n
 ## Additional parameters:
 
 - **name** (string): The public name of the App Clip (displayed when opening it).
-- **bundleIdSuffix** (string, default: "Clip"): The suffix that is appended to the bundle id to form the App Clip's bundle id.
+- **bundleIdSuffix** (string, default: "Clip"): The suffix that is appended to the bundle id to form the App Clip's bundle id. Please note: If you change this, you need to pass the new suffix when using the isClip() function (e.g. `isClip("AppClip")`).
 - **targetSuffix** (string, default: "Clip"): The suffix that is appended to the target name.
 - **groupIdentifier** (string): Configures an app group to share data between App Clip and full app (see [Apple Developer Docs](https://developer.apple.com/documentation/xcode/configuring-app-groups))
 - **deploymentTarget** (string): Sets the deployment target for the App Clip. If you set this to "16.0", your App Clip can be 15 MB instead of 10 MB.
